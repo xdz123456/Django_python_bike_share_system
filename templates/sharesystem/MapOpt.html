@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Map For Operator</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+
+    <script>
+        L_NO_TOUCH = false;
+        L_DISABLE_3D = false;
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.6.0/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.6.0/dist/leaflet.css"/>
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"/> -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"/>
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+
+    <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    {#template_1#}
+    {% block title_block %}
+
+    {% endblock %}
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.1.0/leaflet.markercluster.js"></script>
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.1.0/MarkerCluster.css"/>
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.1.0/MarkerCluster.Default.css"/>
+
+    <style>
+        .top {
+            width: 99vw;
+            height: 100vh;
+            background-color: rgb(250, 218, 83);
+            overflow: hidden;
+            padding-bottom: 8%;
+        }
+
+        .nav-left {
+            float: left;
+            padding-top: 11px;
+            padding-left: 30px;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            font-size: 24px;
+            color: rgb(255, 255, 255);
+        }
+
+        .nav-right {
+            float: right;
+            padding-top: 22px;
+        }
+
+        .nav-right li {
+            display: inline-block;
+        }
+
+        .nav-right a {
+            padding-left: 10px;
+            padding-right: 10px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            border-radius: 5px;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            font-size: 14px;
+            color: rgb(255, 255, 255);
+            letter-spacing: 1px;
+            text-decoration: none;
+        }
+
+        .selected {
+            background-color: rgb(180, 180, 180);
+            color: rgb(250, 218, 83);
+            font-weight: bolder;
+        }
+
+        .grey {
+            width: 99vw;
+            height: 95vh;
+            margin-top: 80px;
+            background-color: rgb(180, 180, 180)
+        }
+
+        .outer {
+            float: left;
+            width: 50px;
+            height: 16px;
+            display: table;
+        }
+
+        .inner {
+            display: table-cell;
+            vertical-align: middle;
+            text-align: center;
+        }
+
+        .welcome {
+            float: left;
+            padding-top: 10px;
+            padding-left: 50%;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 14px;
+            font-weight: bold;
+            color: rgb(250, 218, 83);
+            letter-spacing: 2px;
+            text-align: center;
+        }
+
+        .welcome:hover {
+            color: rgb(250, 218, 83);;
+        }
+
+        .username:hover {
+            color: rgb(250, 218, 83);;
+        }
+
+        .username {
+            float: left;
+            padding-top: 2px;
+            padding-left: 50%;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 12px;
+            color: rgb(250, 218, 83);
+            letter-spacing: 3px;
+            text-align: center;
+        }
+
+        .main {
+            margin: auto;
+            width: 88vw;
+            height: 82vh;
+        }
+
+        .outer-right {
+            float: left;
+            margin-left: 12vw;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin-top:2vh;
+            margin-bottom: 2vh;
+        }
+
+        .p1 {
+            float: left;
+            /* margin-top: -5vh; */
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
+        .label
+        {
+            float: left;
+            color: rgb(250, 218, 83);
+            font-size: 18px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            font-style: italic;
+            border-bottom: 4px double rgb(250, 218, 83);
+            margin-top: 0.5vh;
+        }
+
+        .input_bkid {
+            float: left;
+            margin-left:5px;
+            border: 1px solid #ccc;
+            padding: 5px 2px;
+            border-radius: 3px;
+            padding-left: 5px;
+            margin-top: 0.5vh;
+        }
+
+        .btn {
+            float: left;
+            margin-left:1vw;
+            font-size: 15px;
+            font-style: italic;
+            font-weight: bold;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            border: 2px solid rgb(250, 218, 83);
+            padding: 6px 20px;
+        }
+        #map {
+            padding-top: 4vh;
+            width: 88vw;
+            height: 82vh;
+            margin: auto;
+        }
+        .footer {
+            padding-top: 4vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 13px;
+            font-weight: bold;
+            color: rgb(185, 185, 185);
+            letter-spacing: 1px;
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+<div class="top">
+    <div class="menu">
+        <h1 class="nav-left">BIKE SHARE SYSTEM</h1>
+        <ul class="nav-right">
+            <li>
+                <a href="/mapopt/" class="selected">MAP</a>
+            </li>
+            <li>
+                <a href="/login/">LOGOUT</a>
+            </li>
+        </ul>
+    </div>
+    <div class="grey">
+        <div class="outer">
+            <div class="inner">
+                <a class="welcome">WELCOME</a>
+                <a class="username">{{ username }}</a>
+            </div>
+        </div>
+        <div class="outer-right">
+            <p class="p1">
+                <form id="bkid" method="post">{% csrf_token %}
+                    <span class="label">Check The Map and Enter One Bike Id:</span> 
+                    <input class="input_bkid" name="bike_id_input" type="number" maxlength="3"/>
+                    <input class="btn" type="submit" value="Submit" >
+                    {% if flag == 1 %}
+                    <input id="get_detail" class="btn" type="button" value="View Bike Detail" onclick="window.location.href='/bikedetail/'"/>
+                    {% endif %}
+                </form>
+            </p>
+        </div>
+        <center>
+            <div class="main">
+                {#template_1#}
+                {% block body_block %}
+
+                {% endblock %}
+            </div>
+        </center>
+    </div>
+    <div class="footer">@2021 O-LAB2-TEAM2</div>
+</div>
+<script>
+</script>
+</body>
+
+{% block script_block %}
+
+{% endblock %}
+
+</html>

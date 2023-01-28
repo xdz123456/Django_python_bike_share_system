@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Move Bike</title>
+        <meta charset="UTF-8">
+        <style>
+            .top
+            {   width:99vw;
+                height:100vh;
+                background-color: rgb(250,218,83);
+                overflow:hidden;
+                padding-bottom: 8%;
+            }
+            
+            .nav-left
+            {
+                float:left;
+                padding-top: 11px;
+                padding-left: 30px;
+                font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+                font-size: 24px;
+                color:rgb(255, 255, 255);
+            }
+            .nav-right
+            {
+                float:right;
+                padding-top: 22px;
+            }
+            .nav-right li
+            {
+                display: inline-block;
+                margin-right: 8px;
+            }
+            .nav-right a
+            {
+                padding-left: 10px;
+                padding-right: 10px; 
+                padding-top:10px; 
+                padding-bottom: 10px;
+                border-radius: 5px;
+                font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+                font-size: 14px;
+                color:rgb(255, 255, 255);
+                letter-spacing:1px;
+                text-decoration: none;
+            }
+            .selected{
+                background-color:rgb(180, 180, 180);
+                color: rgb(250,218,83);
+                font-weight: bolder;
+            }
+
+            .grey
+            {
+                width:99vw;
+                height:95vh;
+                margin-top:80px;
+                background-color:rgb(180, 180, 180)
+            }
+
+            .outer {
+                width: 50px;
+                height: 16px;
+                display: table;
+            }
+            .inner {
+                display: table-cell;
+                vertical-align: middle;
+                text-align: center;
+            }
+            .welcome
+            {
+                float: left;
+                padding-top: 10px;
+                padding-left: 50%;
+                font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                font-size: 14px;
+                font-weight:bold;
+                color:rgb(250,218,83);
+                letter-spacing:2px;
+                text-align:center;
+            }
+            .welcome:hover{
+                color: rgb(250,218,83);;
+            }
+            .username:hover{
+                color: rgb(250,218,83);;
+            }
+            .username
+            {
+                float: left;
+                padding-top: 2px;
+                padding-left: 50%;
+                font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                font-size: 12px;
+                color:rgb(250,218,83);
+                letter-spacing:3px;
+                text-align:center;
+            }
+
+            #rd
+            {
+                position:absolute;
+                top:50%;
+                left:50%;
+                margin-top:-28vh;
+                margin-left:-17vw;
+                width:30vw;
+                height:65vh;
+                padding: 40px;
+                border:solid 2px rgb(250,218,83);
+                border-radius: 10px;
+                background-color: white;
+                font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            }
+            
+            .p2{
+                text-align: center;
+                font-style: italic;
+                font-weight: bold;
+                letter-spacing: 2px;
+                font-size: 20px;
+                margin-bottom: 10vh;
+            }
+
+            .p3{
+                /* margin-left: 5vw; */
+                text-align: center;
+                padding-top: 4vh;
+                font-size: 18px;
+            }
+
+            .input
+            {
+                margin-left: 1vw;
+                border: 1px solid #ccc;
+                padding: 5px 2px;
+                border-radius: 3px;
+                padding-left: 5px;
+            }
+            
+            .btn{
+                font-size: 18px;
+                font-style: italic;
+                font-weight: bold;
+                font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+                border: 2px solid rgb(250, 218, 83);
+                padding: 6px 20px;
+            }
+
+            #move
+            {
+                margin-top:16vh;
+                margin-right: 2vw;
+            }
+
+            .footer
+            {
+                padding-top: 4vh;
+                font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                font-size: 13px;
+                font-weight:bold;
+                color:rgb(185,185,185);
+                letter-spacing:1px;
+                text-align: center;
+            }
+
+        </style>
+    </head>
+    <body>
+        <div class="top">
+            <div class = "menu">
+                <h1 class="nav-left">BIKE SHARE SYSTEM</h1>
+                <ul class="nav-right">
+                    <li>
+                        <a href="/mapopt/" class="selected">MAP</a>
+                    </li>
+                    <li>
+                        <a href="/login/">LOGOUT</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="grey">
+                <div class="outer">
+                    <div class="inner">
+                        <a class="welcome">WELCOME</a>
+                        <a class="username">{{ username }}</a>
+                    </div>
+                </div>
+                <center>
+                <div id="rd" class="dialog">
+                    <form id="movebike" method="post">{% csrf_token %} 
+                        <p class="p2">Target Location</p>     
+                        <p class="p3">Lng<input name="lng_input" class="input" type="number" maxlength="25"/></p>
+                        <p class="p3">Lat<input name="lat_input" class="input" type="number" maxlength="25"/></p>
+                        <input id="move" class="btn" type="submit" value="MOVE THIS BIKE"/>
+                        <input id="cancel" class="btn" type="button" value="CANCEL" onclick="window.location.href='/bikedetail/'"/>           
+                    </form> 
+                </div>
+                </center>
+            <div class="footer">@2021 O-LAB2-TEAM2</div>
+        </div>
+        
+        <script>
+
+        </script>
+    </body>
+</html>

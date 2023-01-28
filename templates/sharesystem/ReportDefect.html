@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Map For Customers</title>
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+        <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDpLK9jEjbn5rKaWzvBXUXhEp574vMLEvE&sensor=false"></script>
+        <style>
+            .top
+            {   width:99vw;
+                height:100vh;
+                background-color: rgb(250,218,83);
+                overflow:hidden;
+                padding-bottom: 8%;
+            }
+            
+            .nav-left
+            {
+                float:left;
+                padding-top: 11px;
+                padding-left: 30px;
+                font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+                font-size: 24px;
+                color:rgb(255, 255, 255);
+            }
+            .nav-right
+            {
+                float:right;
+                padding-top: 22px;
+            }
+            .nav-right li
+            {
+                display: inline-block;
+                margin-right: 8px;
+            }
+            .nav-right a
+            {
+                padding-left: 10px;
+                padding-right: 10px; 
+                padding-top:10px; 
+                padding-bottom: 10px;
+                border-radius: 5px;
+                font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+                font-size: 14px;
+                color:rgb(255, 255, 255);
+                letter-spacing:1px;
+                text-decoration: none;
+            }
+            .selected{
+                background-color:rgb(180, 180, 180);
+                color: rgb(250,218,83);
+                font-weight: bolder;
+            }
+            .grey
+            {
+                width:99vw;
+                height:95vh;
+                margin-top:80px;
+                background-color:rgb(180, 180, 180)
+            }
+
+            .outer {
+                float: left;
+                width: 50px;
+                height: 16px;
+                display: table;
+            }
+            .inner {
+                display: table-cell;
+                vertical-align: middle;
+                text-align: center;
+            }
+            .welcome
+            {
+                float: left;
+                padding-top: 10px;
+                padding-left: 50%;
+                font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                font-size: 14px;
+                font-weight:bold;
+                color:rgb(250,218,83);
+                letter-spacing:2px;
+                text-align:center;
+            }
+            .welcome:hover{
+                color: rgb(250,218,83);;
+            }
+            .username:hover{
+                color: rgb(250,218,83);;
+            }
+            .username
+            {
+                float: left;
+                padding-top: 2px;
+                padding-left: 50%;
+                padding-bottom: 5px;
+                font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                font-size: 12px;
+                color:rgb(250,218,83);
+                letter-spacing:3px;
+                text-align:center;
+            }
+
+            #rd
+            {
+                position:absolute;
+                top:50%;
+                left:50%;
+                margin-top:-28vh;
+                margin-left:-20vw;
+                width:36vw;
+                height:65vh;
+                padding: 40px;
+                border:solid 2px rgb(250,218,83);
+                border-radius: 10px;
+                background-color: white;
+                font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            }
+            .p2{
+                text-align: center;
+                font-size: 18px;
+                margin-bottom:-10px;
+            }
+            .input_bkid 
+            {
+                border: 1px solid #ccc;
+                padding: 5px 2px;
+                border-radius: 3px;
+                padding-left: 5px;
+            }
+            .p3{
+                text-align: left;
+                padding-top: 10px;
+            }
+            .deftext{
+                width:24.5vw;
+                height:20vh;
+                text-align: left;
+                border:solid 1px rgb(202, 199, 199);
+                border-radius: 5px;
+                font-size:medium;
+                padding: 10px;
+                margin-bottom: 10px;
+            }
+            #submit{
+                margin:50px;
+                font-size: 15px;
+                font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+                border: 2px solid rgb(250,218,83);
+                padding: 6px 20px;
+            }
+            #cancel{
+                position:relative;
+                margin-top: 7vh;
+                margin-left:20px;
+                font-size: 15px;
+                font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+                border: 2px solid rgb(250,218,83);
+                padding: 6px 20px;
+            }
+            .btn{
+                float:left;
+                font-size: 15px;
+                font-style: italic;
+                font-weight: bold;
+                font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+                border: 2px solid rgb(250,218,83);
+                padding: 6px 20px;
+            }
+            
+            .footer
+            {
+                padding-top: 4vh;
+                font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                font-size: 13px;
+                font-weight:bold;
+                color:rgb(185,185,185);
+                letter-spacing:1px;
+                text-align: center;
+            }
+
+        </style>
+    </head>
+    <body>
+        <div class="top">
+            <div class = "menu">
+                <h1 class="nav-left">BIKE SHARE SYSTEM</h1>
+                <ul class="nav-right">
+                    <li>
+                        <a href="/mapcust/">MAP</a>
+                    </li>
+                    <li>
+                        <a href="/order/">ORDER</a>
+                    </li>
+                    <li>
+                        <a href="/defect/" class="selected"><u>DEFECT</u></a>
+                    </li>
+                    <li>
+                        <a href="/account/">ACCOUNT</a>
+                    </li>
+                    <li>
+                        <a href="/login/">LOGOUT</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="grey">
+                <div class="medium">
+                    <div class="outer">
+                        <div class="inner">
+                            <a class="welcome">WELCOME</a>
+                            <a class="username">{{ username }}</a>
+                        </div>
+                    </div> 
+                </div>
+                <div id="rd" class="dialog">
+                    <p class="p2">Report Defects</p>
+                    <form id="submit" method="post">
+                        {% csrf_token %}
+                        <p class="p3">Bike ID: <input class="input_bkid" name="bike_id" type="number" maxlength="5" /></p>
+                        <p class="p3">Defect Description:</p>
+                        <textarea type="text" name="dftdsp" class="deftext" placeholder="Please describe the defect you have discovered."></textarea>
+                        <input type="submit" id="submit" class="btn" value="Submit"/>
+                        <input type="button" id="cancel" class="btn" value="Cancel" onclick="window.location.href='/map/'"/>
+                    </form>
+                </div>
+            </div>
+            <div class="footer">@2021 O-LAB2-TEAM2</div>
+        </div>
+        </div>
+    </body>
+</html>

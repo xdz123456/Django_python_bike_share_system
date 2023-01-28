@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>About</title>
+        <meta charset="UTF-8">
+        <style>
+            .top
+            {   width:99vw;
+                height:84vh;
+                background-color: rgb(250,218,83);
+                overflow:hidden;
+                padding-bottom: 8%;
+            }
+            
+            .nav-left
+            {
+                float:left;
+                padding-top: 11px;
+                padding-left: 30px;
+                font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+                font-size: 24px;
+                color:rgb(255, 255, 255);
+            }
+            .nav-right
+            {
+                float:right;
+                padding-top: 22px;
+            }
+            .nav-right li
+            {
+                display: inline-block;
+                margin-right: 6px;
+            }
+            .nav-right a
+            {
+                padding-left: 10px;
+                padding-right: 10px; 
+                padding-top:10px; 
+                padding-bottom: 10px;
+                border-radius: 5px;
+                font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+                font-size: 14px;
+                color:rgb(255, 255, 255);
+                letter-spacing:1px;
+                text-decoration: none;
+            } 
+            .selected{
+                background-color:rgb(180, 180, 180);
+                color: rgb(250,218,83);
+                font-weight: bolder;
+            }
+
+            .welcome
+            {
+                width:99vw;
+                height:79vh;
+                margin-top:80px;
+                background-color:rgb(180, 180, 180)
+            }
+
+            h2
+            {
+                padding-top: 10vh;
+                font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                font-size: 30px;
+                color:rgb(250,218,83);
+                letter-spacing:4px;
+                text-align:center;
+            }
+
+            .main
+            {
+                width:60vw;
+                height:56vh;
+                background-color:rgb(248, 248, 248);
+                border-radius: 30px;
+            }
+            
+            p
+            {
+                padding-top: 3vh;
+                font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                font-size: 14px;
+                font-weight:bold;
+                color:rgb(79, 78, 73);
+                letter-spacing:1px;
+            }
+
+            input{
+                font-size: 15px;
+                font-style: italic;
+                font-weight: bold;
+                font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+                border: 2px solid rgb(250, 218, 83);
+                padding: 6px 20px;
+                margin-top: 2vh;
+            }
+
+            .footer
+            {
+                padding-top: 4vh;
+                font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                font-size: 13px;
+                font-weight:bold;
+                color:rgb(185,185,185);
+                letter-spacing:1px;
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="top">
+            <div class = "menu">
+                <h1 class="nav-left">BIKE SHARE SYSTEM</h1>
+                <ul class="nav-right">
+
+                </ul>
+            </div>
+            <center>
+            <div class="welcome">
+                <h2>O-LAB-TEAM2</h2>
+                <div class="main">
+                    <p>2627888 LIANG, Zeyan</p>
+                    <p>2590260 YANG, Suiyi</p>
+                    <p>2707214 WU, Zonglin</p>
+                    <p>2633042 REN, Hongjin</p>
+                    <p>2663048 XIE, Dongzhan</p>
+                    <p>2648422 SUN, Weiran</p>
+                    <input type="button" value="Back" onclick="location.href='/login/'"/>
+                </div>
+            </div>
+            <div class="footer">@2021 O-LAB2-TEAM2</div>
+            </center>
+        </div>
+    </body>
+</html>

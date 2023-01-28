@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Order List</title>
+        <meta charset="UTF-8">
+        <style>
+            .top
+            {   width:99vw;
+                height:100vh;
+                background-color: rgb(250,218,83);
+                overflow:hidden;
+                padding-bottom: 8%;
+            }
+            
+            .nav-left
+            {
+                float:left;
+                padding-top: 11px;
+                padding-left: 30px;
+                font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+                font-size: 24px;
+                color:rgb(255, 255, 255);
+            }
+            .nav-right
+            {
+                float:right;
+                padding-top: 22px;
+            }
+            .nav-right li
+            {
+                display: inline-block;
+            }
+            .nav-right a
+            {
+                padding-left: 10px;
+                padding-right: 10px; 
+                padding-top:10px; 
+                padding-bottom: 10px;
+                border-radius: 5px;
+                font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+                font-size: 14px;
+                color:rgb(255, 255, 255);
+                letter-spacing:1px;
+                text-decoration: none;
+            }
+            .selected{
+                background-color:rgb(180, 180, 180);
+                color: rgb(250,218,83);
+                font-weight: bolder;
+            }
+            .grey
+            {
+                width:99vw;
+                height:95vh;
+                margin-top:80px;
+                background-color:rgb(180, 180, 180)
+            }
+
+            .outer {
+                width: 50px;
+                height: 16px;
+                display: table;
+            }
+            .inner {
+                display: table-cell;
+                vertical-align: middle;
+                text-align: center;
+            }
+            .welcome
+            {
+                float: left;
+                padding-top: 10px;
+                padding-left: 50%;
+                font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                font-size: 14px;
+                font-weight:bold;
+                color:rgb(250,218,83);
+                letter-spacing:2px;
+                text-align:center;
+            }
+            .welcome:hover{
+                color: rgb(250,218,83);;
+            }
+            .username:hover{
+                color: rgb(250,218,83);;
+            }
+            .username
+            {
+                float: left;
+                padding-top: 2px;
+                padding-left: 50%;
+                font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                font-size: 12px;
+                color:rgb(250,218,83);
+                letter-spacing:3px;
+                text-align:center;
+            }
+
+            .main
+            {
+                margin-top: 3vh;
+                margin-bottom: 3vh;
+                padding-top: 30px;
+                width:88vw;
+                height:78vh;
+                background-color:rgb(248, 248, 248);
+                border-radius: 30px;
+                overflow:scroll;
+            }
+
+            table.gridtable
+            {
+                width: 80vw;
+                font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                font-size: 12px;
+                color:rgb(44, 44, 44);
+                border-width: 1px;
+                border-color: rgb(88, 88, 88);
+                border-collapse: collapse;
+            }
+            table.gridtable th{
+                border-width: 1px;
+                padding: 8px;
+                border-style: solid;
+                border-color: rgb(88, 88, 88);
+                background-color:rgb(238, 238, 238);
+                font-size: 14px;
+            }
+            table.gridtable td{
+                border-width: 1px;
+                padding: 8px;
+                border-style: solid;
+                border-color: rgb(88, 88, 88);
+                background-color:rgb(240, 240, 240);
+                font-size: 14px;
+            }
+            p
+            {
+                margin:15vw;
+                font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+                font-size: 28px;
+                letter-spacing: 4px;
+                font-weight: 900;
+                font-style: italic;
+                color:rgb(180, 180, 180);
+            }
+            .btn {
+                float: left;
+                font-size: 15px;
+                font-style: italic;
+                font-weight: bold;
+                font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+                border: 2px solid rgb(250, 218, 83);
+                padding: 6px 20px;
+            }
+            .footer
+            {
+                padding-top: 4vh;
+                font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                font-size: 13px;
+                font-weight:bold;
+                color:rgb(185,185,185);
+                letter-spacing:1px;
+                text-align: center;
+            }
+
+        </style>
+    </head>
+    <body>
+        <div class="top">
+            <div class = "menu">
+                <h1 class="nav-left">BIKE SHARE SYSTEM</h1>
+                <ul class="nav-right">
+                    <li>
+                        <a href="/mapcust/">MAP</a>
+                    </li>
+                    <li>
+                        <a href="/order/" class="selected"><u>ORDER</u></a>
+                    </li>
+                    <li>
+                        <a href="/defect/">DEFECT</a>
+                    </li>
+                    <li>
+                        <a href="/account/">ACCOUNT</a>
+                    </li>
+                    <li>
+                        <a href="/login/">LOGOUT</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="grey">
+                <div class="outer">
+                    <div class="inner">
+                        <a class="welcome">WELCOME</a>
+                        <a class="username">{{ username }}</a>
+                    </div>
+                </div>
+                <center>
+                <div class="main">
+                {% if orders %}
+                    <table class="gridtable">
+                        <tr>
+                            <th width="20%">OrderId</th>
+                            <th width="18%">Duration(min)</th>
+                            <th width="18%">Rental(£)</th>
+                            <th width="18%">Status</th>
+                            <th>Operation</th>
+                        </tr>
+                        {% for order in orders %}
+                            <tr>
+                                <td><a href='/order/detail/{{ order.order_id }}/'>{{ order.order_id }}</a></td>
+                                <td>{{ order.duration }}</td>
+                                <td>{{ order.order_amount }}</td>
+                                {% if order.order_status == 0 %}
+                                    <td>Ongoing</td>
+                                {% elif order.order_status == 1 %}
+                                    <td>Unpaid</td>
+                                {% elif order.order_status == 2 %}
+                                    <td>Finished</td>
+                                {% endif %}
+                                <td>
+                                    <input type="button" class="btn" value="View Detail" style="cursor:pointer;" onclick="window.location.href='/order/detail/{{ order.order_id }}/'"/>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                {% else %}
+                    <p>NO ORDERS</p>
+                {% endif %}
+                </div>
+                </center>
+            </div>
+            <div class="footer">@2021 O-LAB2-TEAM2</div>
+        </div>
+    </body>
+</html>

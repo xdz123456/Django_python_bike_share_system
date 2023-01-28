@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Manager</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+
+    <script>
+        L_NO_TOUCH = false;
+        L_DISABLE_3D = false;
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.6.0/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.6.0/dist/leaflet.css"/>
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"/> -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"/>
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+
+    <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    {#template_1#}
+    {% block title_block %}
+
+    {% endblock %}
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.1.0/leaflet.markercluster.js"></script>
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.1.0/MarkerCluster.css"/>
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.1.0/MarkerCluster.Default.css"/>
+    <style>
+        .top {
+            width: 99vw;
+            height: 100vh;
+            background-color: rgb(250, 218, 83);
+            overflow: hidden;
+            padding-bottom: 8%;
+        }
+
+        .nav-left {
+            float: left;
+            padding-top: 11px;
+            padding-left: 30px;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            font-size: 24px;
+            color: rgb(255, 255, 255);
+        }
+
+        .nav-right {
+            float: right;
+            padding-top: 22px;
+        }
+
+        .nav-right li {
+            display: inline-block;
+        }
+
+        .nav-right a {
+            padding-left: 10px;
+            padding-right: 10px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            border-radius: 5px;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            font-size: 14px;
+            color: rgb(255, 255, 255);
+            letter-spacing: 1px;
+            text-decoration: none;
+        }
+
+        .selected {
+            background-color: rgb(180, 180, 180);
+            color: rgb(250, 218, 83);
+            font-weight: bolder;
+        }
+
+        .grey {
+            width: 99vw;
+            height: 95vh;
+            margin-top: 80px;
+            background-color: rgb(180, 180, 180)
+        }
+
+        .outer {
+            float:left;
+            width: 50px;
+            height: 16px;
+            display: table;
+        }
+
+        .inner {
+            display: table-cell;
+            vertical-align: middle;
+            text-align: center;
+        }
+
+        .welcome {
+            float: left;
+            padding-top: 10px;
+            padding-left: 50%;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 14px;
+            font-weight: bold;
+            color: rgb(250, 218, 83);
+            letter-spacing: 2px;
+            text-align: center;
+        }
+
+        .welcome:hover {
+            color: rgb(250, 218, 83);
+        }
+
+        .username:hover {
+            color: rgb(250, 218, 83);
+        }
+
+        .username {
+            float: left;
+            padding-top: 2px;
+            padding-left: 50%;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 12px;
+            color: rgb(250, 218, 83);
+            letter-spacing: 3px;
+            text-align: center;
+        }
+        .outer-right 
+        {
+            float: left;
+            margin-left: 5vw;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin-bottom: 2vh;
+        }
+        
+        .time {
+            float: left;
+            margin-left: 1vw;
+            margin-top: 2vh;
+        }
+
+        .label {
+            float: left;
+            margin-left: 3vw;
+            margin-top: 3vh;
+            color: rgb(250, 218, 83);
+            font-style: italic;
+            font-weight: bold;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            font-size: 20px;
+        }
+
+        .date {
+            float:left;
+            width: 18vw;
+            height: 5vh;
+            font-size: 15px;
+            border: 1px solid #ccc;
+        }
+
+        .btn {
+            float:left;
+            font-size: 15px;
+            font-style: italic;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            border: 2px solid rgb(250, 218, 83);
+            padding: 9px 1vw;
+            margin-left: 4vw;
+            /* margin-top: 5vh; */
+        }
+
+        .main {
+            margin: auto;
+            width: 88vw;
+            height: 82vh;
+        }
+
+        .footer {
+            padding-top: 4vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 13px;
+            font-weight: bold;
+            color: rgb(185, 185, 185);
+            letter-spacing: 1px;
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+<div class="top">
+    <div class="menu">
+        <h1 class="nav-left">BIKE SHARE SYSTEM</h1>
+        <ul class="nav-right">
+            <li>
+                <a href="/login/">LOGOUT</a>
+            </li>
+        </ul>
+    </div>
+    <div class="grey">
+        <div class="outer">
+            <div class="inner">
+                <a class="welcome">WELCOME</a>
+                <a class="username">{{ username }}</a>
+            </div>
+        </div>
+        <div class="outer-right">
+            <form id="generateReport" method="post">{% csrf_token %}
+                <div class="label">Start Time</div>
+                <div class="time" id="starttime">
+                    <input class="date" name="startdate" type="date" value="2021-10-01" min="2021-10-01" max="{{ date }}">
+                </div>
+                <div class="label">End Time</div>
+                <div class="time" id="endtime">
+                    <input class="date" name="enddate" type="date" value="2021-10-01" min="2021-10-01" max="{{ date }}">
+                    <input class="btn" id=report_detail type="submit" style="cursor:pointer;" value="Generate Report"/>
+                </div>
+            </form>
+        </div>
+        <div class="main">
+
+            {#template_1#}
+            {% block body_block %}
+
+            {% endblock %}
+        </div>
+    </div>
+    <div class="footer">@2021 O-LAB2-TEAM2</div>
+</div>
+
+</div>
+</body>
+
+{% block script_block %}
+
+{% endblock %}
+</html>

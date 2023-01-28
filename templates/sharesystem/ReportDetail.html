@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>MoveBike</title>
+        <meta charset="UTF-8">
+        <style>
+            .top
+            {   width:99vw;
+                height:100vh;
+                background-color: rgb(250,218,83);
+                overflow:hidden;
+                padding-bottom: 8%;
+            }
+            
+            .nav-left
+            {
+                float:left;
+                padding-top: 11px;
+                padding-left: 30px;
+                font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+                font-size: 24px;
+                color:rgb(255, 255, 255);
+            }
+            .nav-right
+            {
+                float:right;
+                padding-top: 22px;
+            }
+            .nav-right li
+            {
+                display: inline-block;
+                margin-right: 8px;
+            }
+            .nav-right a
+            {
+                padding-left: 10px;
+                padding-right: 10px; 
+                padding-top:10px; 
+                padding-bottom: 10px;
+                border-radius: 5px;
+                font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+                font-size: 14px;
+                color:rgb(255, 255, 255);
+                letter-spacing:1px;
+                text-decoration: none;
+            }
+            .selected{
+                background-color:rgb(180, 180, 180);
+                color: rgb(250,218,83);
+                font-weight: bolder;
+            }
+
+            .grey
+            {
+                width:99vw;
+                height:95vh;
+                margin-top:80px;
+                background-color:rgb(180, 180, 180)
+            }
+
+            .outer {
+                width: 50px;
+                height: 16px;
+                display: table;
+            }
+            .inner {
+                display: table-cell;
+                vertical-align: middle;
+                text-align: center;
+            }
+            .welcome
+            {
+                float: left;
+                padding-top: 10px;
+                padding-left: 50%;
+                font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                font-size: 14px;
+                font-weight:bold;
+                color:rgb(250,218,83);
+                letter-spacing:2px;
+                text-align:center;
+            }
+            .welcome:hover{
+                color: rgb(250,218,83);;
+            }
+            .username:hover{
+                color: rgb(250,218,83);;
+            }
+            .username
+            {
+                float: left;
+                padding-top: 2px;
+                padding-left: 50%;
+                font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                font-size: 12px;
+                color:rgb(250,218,83);
+                letter-spacing:3px;
+                text-align:center;
+            }
+
+            .main
+            {
+                margin:auto;
+                width:88vw;
+                height:80vh;
+            }
+
+            .footer
+            {
+                padding-top: 4vh;
+                font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                font-size: 13px;
+                font-weight:bold;
+                color:rgb(185,185,185);
+                letter-spacing:1px;
+                text-align: center;
+            }
+
+        </style>
+    </head>
+    <body>
+        <div class="top">
+            <div class = "menu">
+                <h1 class="nav-left">BIKE SHARE SYSTEM</h1>
+                <ul class="nav-right">
+                    <li>
+                        <a href="/mapmag/" class="selected">MAP</a>
+                    </li>
+                    <li>
+                        <a href="/login/">LOGOUT</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="grey">
+                <div class="outer">
+                    <div class="inner">
+                        <a class="welcome">WELCOME</a>
+                        <a class="username">{{ username }}</a>
+                    </div>
+                </div>
+                <div class="main">
+                    {% block content %}
+                        {% if chart %}
+                            <img src="data:image/png;base64, {{chart|safe}}"
+                        {% endif %}
+                    {% endblock content %}
+                </div>
+            </div>
+            <div class="footer">@2021 O-LAB2-TEAM2</div>
+        </div>
+        
+        <script>
+
+        </script>
+    </body>
+</html>

@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Order Detail</title>
+        <meta charset="UTF-8">
+        <style>
+            .top
+            {   width:99vw;
+                height:100vh;
+                background-color: rgb(250,218,83);
+                overflow:hidden;
+                padding-bottom: 8%;
+            }
+            
+            .nav-left
+            {
+                float:left;
+                padding-top: 11px;
+                padding-left: 30px;
+                font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+                font-size: 24px;
+                color:rgb(255, 255, 255);
+            }
+            .nav-right
+            {
+                float:right;
+                padding-top: 22px;
+            }
+            .nav-right li
+            {
+                display: inline-block;
+            }
+            .nav-right a
+            {
+                padding-left: 10px;
+                padding-right: 10px; 
+                padding-top:10px; 
+                padding-bottom: 10px;
+                border-radius: 5px;
+                font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+                font-size: 14px;
+                color:rgb(255, 255, 255);
+                letter-spacing:1px;
+                text-decoration: none;
+            }
+            .selected{
+                background-color:rgb(180, 180, 180);
+                color: rgb(250,218,83);
+                font-weight: bolder;
+            }
+
+            .grey
+            {
+                width:99vw;
+                height:95vh;
+                margin-top:80px;
+                background-color:rgb(180, 180, 180)
+            }
+
+            .outer {
+                width: 50px;
+                height: 16px;
+                display: table;
+            }
+            .inner {
+                display: table-cell;
+                vertical-align: middle;
+                text-align: center;
+            }
+            .welcome
+            {
+                float: left;
+                padding-top: 10px;
+                padding-left: 50%;
+                font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                font-size: 14px;
+                font-weight:bold;
+                color:rgb(250,218,83);
+                letter-spacing:2px;
+                text-align:center;
+            }
+            .welcome:hover{
+                color: rgb(250,218,83);;
+            }
+            .username:hover{
+                color: rgb(250,218,83);;
+            }
+            .username
+            {
+                float: left;
+                padding-top: 2px;
+                padding-left: 50%;
+                font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                font-size: 12px;
+                color:rgb(250,218,83);
+                letter-spacing:3px;
+                text-align:center;
+            }
+
+            .main
+            {
+                margin-left: 6vw;
+                margin-top: 3vh;
+                width:88vw;
+                height:80vh;
+                background-color:rgb(248, 248, 248);
+                border-radius: 30px;
+            }
+
+            .detail
+            {
+                padding-top: 5vh;
+            }
+            .title{
+                font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                font-size: 20px;
+                font-weight:bold;
+                color:rgb(250,218,83);
+                letter-spacing:2px;
+                text-align:center;
+                /* padding-left: 12vw; */
+            }
+
+            .left{
+                padding-left: 20vw;
+                padding-bottom: 4vh;
+                float:left;
+            }
+            .right{
+                padding-bottom: 4vh;
+                padding-right: 20vw;
+                float:right;
+            } 
+            .label{
+                padding-top: 8vh;
+                font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                color: rgb(150, 150, 150);
+                font-weight:bold;
+                letter-spacing:1.5px;
+                font-size: 16px;
+                font-style: normal;
+            }
+            .text{
+                color:black;
+                font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+                font-weight: lighter;
+                font-size: 21px;
+                font-style: italic;
+            }
+            
+            .operation{
+                /* float: auto; */
+                margin-right: 10px;
+                padding-top: 52vh;
+                padding-left: 25vw;
+            }
+            .btn{
+                float:left;
+                font-size: 15px;
+                font-style: italic;
+                font-weight: bold;
+                font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+                border: 2px solid rgb(250, 218, 83);
+                padding: 6px 20px;
+                margin-left: 4vw;
+            }
+
+            .footer
+            {
+                padding-top: 4vh;
+                font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                font-size: 13px;
+                font-weight:bold;
+                color:rgb(185,185,185);
+                letter-spacing:1px;
+                text-align: center;
+            }
+
+        </style>
+    </head>
+    <body>
+        <div class="top">
+            <div class = "menu">
+                <h1 class="nav-left">BIKE SHARE SYSTEM</h1>
+                <ul class="nav-right">
+                    <li>
+                        <a href="/mapcust/">MAP</a>
+                    </li>
+                    <li>
+                        <a href="/order/" class="selected"><u>ORDER</u></a>
+                    </li>
+                    <li>
+                        <a href="/defect/">DEFECT</a>
+                    </li>
+                    <li>
+                        <a href="/account/">ACCOUNT</a>
+                    </li>
+                    <li>
+                        <a href="/login/">LOGOUT</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="grey">
+                <div class="outer">
+                    <div class="inner">
+                        <a class="welcome">WELCOME</a>
+                        <a class="username">{{ username }}</a>
+                    </div>
+                </div>
+                <div class="main">
+                    <div class="detail">
+                        <div class="title">>>  Order Detail  <<</div>
+                        <div class="left">
+                            <div class="label">OrderId: <span class="text">{{ order.order_id }}</span></div>
+                            {% if order.order_status == 0 %}
+                            <div class="label">Status: <span id="sts" class="text">Ongoing</span></div>
+                            {% elif order.order_status == 1 %}
+                            <div class="label">Status: <span id="sts" class="text">Unpaid</span></div>
+                            {% elif order.order_status == 2 %}
+                            <div class="label">Status: <span id="sts" class="text">Finished</span></div>
+                            {% endif %}
+                            <div class="label">Rental(£): <span class="text">{{ order.order_amount }}</span></div>
+                        </div>
+                        <div class="right">
+                            <div class="label">Duration(min): <span class="text">{{ order.duration }}</span></div>
+                            <div class="label">StartTime: <span class="text">{{ order.rent_time }}</span></div>
+                            <div class="label">EndTime: <span class="text">{{ order.return_time }}</span></div>
+                        </div>
+                        <div class="operation">
+                            <input class="btn" type="button" value="<< ORDER LIST" style="cursor:pointer;" onclick="location.href='/order/'"/>
+                            {% if order.order_status == 0 %}
+                            <form id="return_bike" method="post">
+                                {% csrf_token %}
+                                <input class="btn" type="submit" value="CONFIRM TO RETURN BIKE" style="cursor:pointer;">
+                            </form>
+                            {% elif order.order_status == 1 %}
+                            <input class="btn" type="button" value="PAY BILL" style="cursor:pointer;" onclick="window.location.href='/paybill/{{ order.order_id }}'">
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer">@2021 O-LAB2-TEAM2</div>
+        </div>
+    </body>
+</html>
